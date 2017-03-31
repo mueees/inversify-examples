@@ -1,6 +1,5 @@
 import "reflect-metadata";
-import {Container, inject, injectable, interfaces} from 'inversify';
-import Newable = interfaces.Newable;
+import {Container, inject, injectable, interfaces} from "inversify";
 
 let container = new Container();
 
@@ -12,13 +11,8 @@ class Logger {
 }
 
 @injectable()
-class Email {
-    address: string;
-}
-
-@injectable()
 class User {
-    email: Email;
+    name: string;
 
     constructor(@inject(Logger) private logger: any) {
 
@@ -27,16 +21,12 @@ class User {
 
 container.bind<any>(Logger).to(Logger);
 container.bind<any>(User).to(User);
-container.bind<any>(Email).to(Email);
 
 container.bind<interfaces.Factory<User>>("UserFactory").toFactory<User>((context: interfaces.Context) => {
-    return (address: string) => {
+    return (name: string) => {
         let user = context.container.get<User>(User);
-        let email = context.container.get<Email>(Email);
 
-        email.address = address;
-
-        user.email = email;
+        user.name = name;
 
         return user;
     };
