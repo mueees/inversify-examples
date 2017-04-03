@@ -1,4 +1,4 @@
 import "reflect-metadata";
 import {Container} from "inversify";
 
-let container = new Container();
+var container = new Container();

@@ -18,6 +18,7 @@
   "homepage": "https://github.com/mueees/inversify-examples#readme",
   "dependencies": {
     "inversify": "^3.0.0",
+    "inversify-binding-decorators": "^3.0.0",
     "reflect-metadata": "^0.1.9"
   },
   "devDependencies": {
